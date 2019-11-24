@@ -29,7 +29,7 @@ public class TaskController {
 		tr.save(t);
 		return new ModelAndView("redirect:/existing-user?userid=" + userid);
 	}
-	
+
 	@PostMapping("/search-task")
 	public ModelAndView searchTask(Integer userid, String description) {
 		User u = ur.findByUserid(userid);
@@ -91,6 +91,13 @@ public class TaskController {
 		mv.addObject("sortCompleteUrl", sortCompleteUrl);
 		return mv;
 	}
+
+	/*
+	 * The if else statements in the following methods are there to allow for
+	 * multiple sorts at the same time. If the user clicks to sort by date, for
+	 * instance, the method will take in the "sortCompleteUrl" which is fed into the
+	 * jsp file by the previously called sortByComplete methods to determine how to sort by complete.
+	 */
 
 	@RequestMapping("/sort-date-desc")
 	public ModelAndView sortDateDesc(Integer userid, String sortCompleteUrl) {
