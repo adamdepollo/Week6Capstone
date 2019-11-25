@@ -22,6 +22,7 @@ public class UserController {
 					"Sorry, we couldn't find an account using that email. Please try again.");
 		}
 		if (!password.equals(ur.findByEmail(email).getPassword())) {
+			//fl.addFlashAttribut("message", "Email already exists. Please try again."
 			return new ModelAndView("index", "badPassCredential",
 					"Sorry, the password you entered was incorrect. Please try again.");
 		}
@@ -45,6 +46,10 @@ public class UserController {
 
 	@PostMapping("/new-user")
 	public ModelAndView newUserTasklistPage(User u) {
+		if (ur.findByEmail(u.getEmail()) != null) {
+			return new ModelAndView("index", "emailInUse",
+					"Sorry, an account has already been created with that email. Please try again with a different email.");
+		}
 		ur.save(u);
 		return new ModelAndView("redirect:/existing-user?userid=" + u.getUserid());
 	}

@@ -7,3 +7,7 @@ if (document.getElementById('passAlert').innerHTML !== "") {
 if (document.getElementById('emailAlert').innerHTML !== "") {
 	document.getElementById('emailAlert').removeAttribute("style");
 }
+
+if (document.getElementById('emailInUse').innerHTML !== "") {
+	document.getElementById('emailInUse').removeAttribute("style");
+}
